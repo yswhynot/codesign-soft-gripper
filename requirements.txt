@@ -1,0 +1,8 @@
+numpy
+usd-core
+warp-lang==1.6.1
+torch>=2.0
+scipy
+trimesh
+tensorboard
+
