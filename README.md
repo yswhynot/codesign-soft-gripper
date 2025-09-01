@@ -8,7 +8,7 @@ Sha Yi*, Xueqian Bai*, Adabhav Singh, Jianglong Ye, Michael T. Tolley, Xiaolong 
 
 ## Requirements
 - Python 3.10
-- GPU optional but recommended (tested with CUDA on RTX 3090, 4090)
+- GPU optional but recommended (tested on RTX 3090, 4090)
 - Key Python deps are listed in `requirements.txt` :
   - warp-lang==1.6.1
   - torch>=2.0
@@ -37,12 +37,15 @@ python code/sim_gen.py --render \
 ```
 Results are written as USD files to `output/`. You can view them with an Omniverse-compatible USD viewer (e.g., `usdview`). The default stiffness distribution is already the optimized values from our trained model.
 
+## Hardware setup
+The hardware models, setup, assembly instructions, and motor control scripts are in `hardware/`. See the [README](https://github.com/yswhynot/codesign-soft-gripper/tree/main/hardware) for details.
+
 ## Data and assets
 - YCB meshes are expected under `models/ycb/<object_name>/google_16k/` with `nontextured.ply`. This repo includes the mustard bottle for convenience. You may download the entire YCB dataset [here](https://www.ycbbenchmarks.com/).
 - Pose priors from [AnyGrasp](https://github.com/graspnet/anygrasp_sdk) are stored under `pose_info/` (see that folder’s README for details). Initial finger transforms are cached in `pose_info/init_opt/` to skip re-initialization. If you wish to process new objects, we recommend using our updated AnyGrasp setup [here](https://github.com/Hakuna25/anygrasp_sdk).
 
 ## Generate training data
-`code/sim_gen.py` generates simulation rollouts and logs:
+`code/sim_datagen.py` generates simulation rollouts and logs:
 ```bash
 python code/sim_datagen.py \
   --object_name 006_mustard_bottle \
